@@ -1,0 +1,8 @@
+.DS_Store
+bin/
+.classpath
+.project
+.settings
+*.class
+*.png
+*.jar
