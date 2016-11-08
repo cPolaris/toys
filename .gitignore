@@ -1,7 +1,10 @@
 .DS_Store
+.idea
 bin/
 .classpath
 .project
 .settings
+*.mss
 *.class
 *.png
+*.iml

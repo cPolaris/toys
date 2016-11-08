@@ -135,11 +135,12 @@ public final class Snake {
     }
 
     // FUNCTIONAL METHODS =====================================================
+
     /**
      * Set up game according to parameters.
      * Display control tips.
      */
-    private static void initGame () {
+    private static void initGame() {
         StdDraw.show(0);
 
         // Graphics setup
@@ -158,21 +159,21 @@ public final class Snake {
         speedMultiplier = difficulty.val();
 
         switch (difficulty) {
-        case REGULAR:
-            superProb = REGULAR_SUPER_PROB;
-            xtraProb = REGULAR_XTRA_PROB;
-            break;
-        case HARD:
-            superProb = HARD_SUPER_PROB;
-            xtraProb = HARD_XTRA_PROB;
-            break;
-        case EASY:
-            superProb = EASY_SUPER_PROB;
-            xtraProb = EASY_XTRA_PROB;
-            break;
-        default:
-            // unreachable
-            break;
+            case REGULAR:
+                superProb = REGULAR_SUPER_PROB;
+                xtraProb = REGULAR_XTRA_PROB;
+                break;
+            case HARD:
+                superProb = HARD_SUPER_PROB;
+                xtraProb = HARD_XTRA_PROB;
+                break;
+            case EASY:
+                superProb = EASY_SUPER_PROB;
+                xtraProb = EASY_XTRA_PROB;
+                break;
+            default:
+                // unreachable
+                break;
         }
 
         // Build snake at starting location
@@ -197,7 +198,7 @@ public final class Snake {
     /**
      * Fetch the direction key the player is currently pressing
      */
-    private static Direction fetchControl () {
+    private static Direction fetchControl() {
         if (StdDraw.isKeyPressed(Direction.D.keyVal)) {
             return Direction.D;
         } else if (StdDraw.isKeyPressed(Direction.U.keyVal)) {
@@ -216,7 +217,7 @@ public final class Snake {
      * Stupid checkStyle says the method is too long. So I broke it in parts
      * so that it is even more unreadable.
      */
-    private static void showSetupDialogue () {
+    private static void showSetupDialogue() {
         setupFrame = new JFrame("Start Game");
         settingsPanel = new JPanel();
         settingsPanel.setLayout(new BoxLayout(settingsPanel, BoxLayout.Y_AXIS));
@@ -289,10 +290,10 @@ public final class Snake {
      * @param classicsRadioButton
      * @param funRadioButton
      */
-    private static void showSetupDialogue3 (final Box modeBox,
-            final ButtonGroup raiodButtonGroup,
-            final JRadioButton classicsRadioButton,
-            final JRadioButton funRadioButton) {
+    private static void showSetupDialogue3(final Box modeBox,
+                                           final ButtonGroup raiodButtonGroup,
+                                           final JRadioButton classicsRadioButton,
+                                           final JRadioButton funRadioButton) {
         classicsRadioButton.addActionListener(new ClassicButtonListener());
         funRadioButton.addActionListener(new FunButtonListener());
 
@@ -331,9 +332,9 @@ public final class Snake {
      * @param foodQuanBox
      * @param playButtonBox
      */
-    private static void showSetupDialogue2 (final Box modeBox,
-            final Box sizeBox, final Box startLenBox, final Box difficultyBox,
-            final Box foodQuanBox, final Box playButtonBox) {
+    private static void showSetupDialogue2(final Box modeBox,
+                                           final Box sizeBox, final Box startLenBox, final Box difficultyBox,
+                                           final Box foodQuanBox, final Box playButtonBox) {
         setTextFieldValues(fIELdSIZE + 1, startLength, difficulty,
                 foodQuantity);
 
@@ -372,7 +373,7 @@ public final class Snake {
     /**
      * Shows the game over message as a text box in the game window
      */
-    private static void showGameOver () {
+    private static void showGameOver() {
         // Frame
         StdDraw.setXscale();
         StdDraw.setYscale();
@@ -405,29 +406,29 @@ public final class Snake {
     }
 
     // HELPER METHODS =========================================================
+
     /**
      * Calculate the score according to the current frame count,
      * snake length and difficulty.
      *
-     * @todo rule for scoring?
      * @return
+     * @todo rule for scoring?
      */
-    private static int calculateScore () {
+    private static int calculateScore() {
         return (int) ((((snakeLen * SCORE_EACH_LENGTH)
                 + ((frameCount * 2 * CONTROL_RESOLUTION) / MILLIS_IN_A_SECOND))
                 * (DIFFICULTY_OFFSET - difficulty.val())) / DIFFICULTY_DIVISOR);
     }
 
     /**
-     * @deprecated
-     *             Link a new node to the snake at front by specifying exact
-     *             coordinate
      * @param xCor
      * @param yCor
+     * @deprecated Link a new node to the snake at front by specifying exact
+     * coordinate
      */
     @Deprecated
     @SuppressWarnings("unused")
-    private static void linkFirst (final int xCor, final int yCor) {
+    private static void linkFirst(final int xCor, final int yCor) {
         final Node newHead = new Node(xCor, yCor, head.heading);
         newHead.next = head;
         head.prev = newHead;
@@ -435,15 +436,14 @@ public final class Snake {
     }
 
     /**
-     * @deprecated
-     *             Link a new node to the snake at tail by specifying exact
-     *             coordinate
      * @param xCor
      * @param yCor
+     * @deprecated Link a new node to the snake at tail by specifying exact
+     * coordinate
      */
     @Deprecated
     @SuppressWarnings("unused")
-    private static void linkLast (final int xCor, final int yCor) {
+    private static void linkLast(final int xCor, final int yCor) {
         final Node newTail = new Node(xCor, yCor, tail.heading);
         tail.next = newTail;
         newTail.prev = tail;
@@ -458,23 +458,23 @@ public final class Snake {
      * @param dir
      * @return
      */
-    private static Coordinate move (final Coordinate origin,
-            final Direction dir) {
+    private static Coordinate move(final Coordinate origin,
+                                   final Direction dir) {
         final int oriX = origin.x;
         final int oriY = origin.y;
         switch (dir) {
-        case U:
-            return new Coordinate(oriX, oriY + 1);
-        case D:
-            return new Coordinate(oriX, oriY + -1);
-        case L:
-            return new Coordinate(oriX - 1, oriY);
-        case R:
-            return new Coordinate(oriX + 1, oriY);
-        default:
-            System.out.println("Unreachable");
-            return new Coordinate(JUST_AN_UNREASONABLE_NUMBER,
-                    JUST_AN_UNREASONABLE_NUMBER);
+            case U:
+                return new Coordinate(oriX, oriY + 1);
+            case D:
+                return new Coordinate(oriX, oriY + -1);
+            case L:
+                return new Coordinate(oriX - 1, oriY);
+            case R:
+                return new Coordinate(oriX + 1, oriY);
+            default:
+                System.out.println("Unreachable");
+                return new Coordinate(JUST_AN_UNREASONABLE_NUMBER,
+                        JUST_AN_UNREASONABLE_NUMBER);
         }
     }
 
@@ -484,7 +484,7 @@ public final class Snake {
      *
      * @param dir
      */
-    private static void linkLast (final Direction dir) {
+    private static void linkLast(final Direction dir) {
         if (dir.equals(tail.heading)) {
             throw new IllegalArgumentException("New node collides with old");
         }
@@ -492,20 +492,20 @@ public final class Snake {
         int newX = tail.x();
         int newY = tail.y();
         switch (dir) {
-        case U:
-            newY++;
-            break;
-        case D:
-            newY--;
-            break;
-        case L:
-            newX--;
-            break;
-        case R:
-            newX++;
-            break;
-        default:
-            System.out.println("Unreachable");
+            case U:
+                newY++;
+                break;
+            case D:
+                newY--;
+                break;
+            case L:
+                newX--;
+                break;
+            case R:
+                newX++;
+                break;
+            default:
+                System.out.println("Unreachable");
         }
 
         // Link the new node
@@ -515,8 +515,8 @@ public final class Snake {
         tail = newTail;
     }
 
-    private static void setTextFieldValues (final int size, final int length,
-            final DifficultyLevels dffclty, final FoodScarcityLevels foodQuan) {
+    private static void setTextFieldValues(final int size, final int length,
+                                           final DifficultyLevels dffclty, final FoodScarcityLevels foodQuan) {
         // Just to avoid some duplicated code
         sizeTextField.setText(Integer.toString(size));
         startingLenTextField.setText(Integer.toString(length));
@@ -524,19 +524,21 @@ public final class Snake {
         foodQuantityComboBox.setSelectedItem(foodQuan);
     }
 
-    private static void setScoreBoard (final int score) {
+    private static void setScoreBoard(final int score) {
         StdDraw.textLeft(0, MARGIN_RATIO * fIELdSIZE,
                 String.format("SCORE: %010d", score));
     }
 
     // MAIN ===================================================================
+
     /**
      * Lanuches the game.
      *
      * @param args
      */
-    public static void main (final String[] args) {
+    public static void main(final String[] args) {
         StdDraw.setCanvasSize(WINDOW_WIDTH, WINDOW_HEIGHT);
+
         while (keepPlaying) {
             showSetupDialogue();
             keepPlaying = false;
@@ -583,7 +585,7 @@ public final class Snake {
 
     }
 
-    private static void waitReplay () {
+    private static void waitReplay() {
         boolean receivedReplayInput = false;
         while (!receivedReplayInput) {
             if (StdDraw.isKeyPressed(KeyEvent.VK_ENTER)) {
@@ -603,9 +605,9 @@ public final class Snake {
     }
 
     // LISTENERS ==============================================================
-    static class ClassicButtonListener implements ActionListener {
+    private static class ClassicButtonListener implements ActionListener {
         @Override
-        public void actionPerformed (final ActionEvent e) {
+        public void actionPerformed(final ActionEvent e) {
             boringMode = true;
             // Change message
             msgLabel1.setText("Use arrow keys to control");
@@ -620,9 +622,9 @@ public final class Snake {
 
     }
 
-    static class FunButtonListener implements ActionListener {
+    private static class FunButtonListener implements ActionListener {
         @Override
-        public void actionPerformed (final ActionEvent e) {
+        public void actionPerformed(final ActionEvent e) {
             boringMode = false;
             // Change message
             msgLabel1.setText("Use arrow keys to control");
@@ -637,12 +639,12 @@ public final class Snake {
 
     }
 
-    static final class SetupDialogListener implements ActionListener {
+    private static final class SetupDialogListener implements ActionListener {
         private static final int TOO_SMALL_FIELD_SIZE = 4;
         private static boolean validInput = false;
 
         @Override
-        public void actionPerformed (final ActionEvent e) {
+        public void actionPerformed(final ActionEvent e) {
             checkInputValid();
             if (validInput) {
                 holdOnLatch.countDown();
@@ -650,13 +652,12 @@ public final class Snake {
         }
 
         /**
-         * @todo
-         *       Check if input values are valid. Either out-of-range or
-         *       NumberFormatException should result in resetting the text
-         *       fields
-         *       back to default values, then wait for another input.
+         * @todo Check if input values are valid. Either out-of-range or
+         * NumberFormatException should result in resetting the text
+         * fields
+         * back to default values, then wait for another input.
          */
-        private static void checkInputValid () {
+        private static void checkInputValid() {
             // Work-around for NumberFormatException
             final int sizePending = (int) Double
                     .parseDouble(sizeTextField.getText());
@@ -664,10 +665,10 @@ public final class Snake {
                     .parseDouble(startingLenTextField.getText());
             final DifficultyLevels diffPending =
                     (DifficultyLevels) difficultyComboBox
-                    .getSelectedItem();
+                            .getSelectedItem();
             final FoodScarcityLevels foodPending =
                     (FoodScarcityLevels) foodQuantityComboBox
-                    .getSelectedItem();
+                            .getSelectedItem();
 
             // if illegal arguments, set value back to default values
             if ((lenPending < 1) || (sizePending < TOO_SMALL_FIELD_SIZE)) {
@@ -690,12 +691,12 @@ public final class Snake {
     }
 
     // THREADS ===============================================================
-    static final class FoodDispenser implements Runnable {
+    private static final class FoodDispenser implements Runnable {
 
         private static final int FOOD_DISPENSE_FLUCTUATION = 200;
 
         @Override
-        public void run () {
+        public void run() {
             while (true) {
                 synchronized (syncLock) {
                     clearExpired();
@@ -720,7 +721,7 @@ public final class Snake {
         /**
          * Clear all the expired food. These are bad for health.
          */
-        private static void clearExpired () {
+        private static void clearExpired() {
             final Iterator<Sweet> sweetItr = sweetPlaces.iterator();
             while (sweetItr.hasNext()) {
                 final Sweet current = sweetItr.next();
@@ -734,11 +735,12 @@ public final class Snake {
          * Dispense sweet at random position but not on the body of the snake
          * nor at at position where a sweet already exists.
          */
-        private static void dispense () {
+        private static void dispense() {
             // DEBUG NOTE: have to compare the x and y values instead of
             // the Coordinate object. Don't know why it won't work.
             Coordinate randCor;
-            rGenLoop: while (true) {
+            rGenLoop:
+            while (true) {
                 randCor = new Coordinate(rGen.nextInt(fIELdSIZE),
                         rGen.nextInt(fIELdSIZE));
 
@@ -783,7 +785,7 @@ public final class Snake {
 
     }
 
-    static final class RenderLoop implements Runnable {
+    private static final class RenderLoop implements Runnable {
         private static final double FAIRLY_THIN_PEN_RADIUS = 0.008;
         private static final double VERY_THIN_PEN_RADIUS = 0.0006;
         private static final int JUST_A_GREY_ISH_COLOR = 170;
@@ -793,7 +795,7 @@ public final class Snake {
         private static boolean superMode = false;
 
         @Override
-        public void run () {
+        public void run() {
             makeStartingTurn();
             while (true) {
                 makeTurn();
@@ -819,7 +821,7 @@ public final class Snake {
             superMode = false;
         }
 
-        private void makeStartingTurn () {
+        private void makeStartingTurn() {
             head.heading = startDir;
             stepAhead();
         }
@@ -827,7 +829,7 @@ public final class Snake {
         /**
          * Fetch the control and then
          */
-        static void makeTurn () {
+        static void makeTurn() {
             final Direction toGo = fetchControl();
             if ((toGo != null) && !toGo.equals(head.heading.opposite())
                     && !toGo.equals(head.heading)) {
@@ -840,7 +842,7 @@ public final class Snake {
          * Move the whole snake by one position according to the direction
          * stored in each Node.
          */
-        static void stepAhead () {
+        static void stepAhead() {
             // Always look before you go!
             lookAhead();
 
@@ -868,7 +870,7 @@ public final class Snake {
          * Draw the current scene (snake and food)
          * Controls the dispensing of food
          */
-        static void updateScene () {
+        static void updateScene() {
             drawFrame();
             frameCount++;
             StdDraw.show(CONTROL_RESOLUTION);
@@ -877,7 +879,7 @@ public final class Snake {
         /**
          * Draws the current frame
          */
-        private static void drawFrame () {
+        private static void drawFrame() {
             StdDraw.clear(StdDraw.BLACK);
 
             drawSnakeBody();
@@ -900,7 +902,7 @@ public final class Snake {
             setScoreBoard(calculateScore());
         }
 
-        private static void drawProgressGrid () {
+        private static void drawProgressGrid() {
             if (!boringMode) {
                 // Draw grid squares to represent snakeLen. When the whole field
                 // is filled up, the player wins.
@@ -918,7 +920,7 @@ public final class Snake {
             }
         }
 
-        private static void drawSweets () {
+        private static void drawSweets() {
             synchronized (syncLock) {
                 final Iterator<Sweet> foodIterator = sweetPlaces.iterator();
                 while (foodIterator.hasNext()) {
@@ -931,7 +933,7 @@ public final class Snake {
         /**
          * Draw the snake
          */
-        private static void drawFieldBorder () {
+        private static void drawFieldBorder() {
             // Draw field outer border lines
             StdDraw.setPenRadius(FAIRLY_THIN_PEN_RADIUS);
             StdDraw.setPenColor(StdDraw.WHITE);
@@ -950,7 +952,7 @@ public final class Snake {
         /**
          * Draw the snake body
          */
-        private static void drawSnakeBody () {
+        private static void drawSnakeBody() {
             // Draw the snake head in red
             StdDraw.setPenColor(StdDraw.BOOK_RED);
             StdDraw.filledSquare(head.x(), head.y(), HALF_CELL_WIDTH);
@@ -974,7 +976,7 @@ public final class Snake {
          * 2. hit
          * 3. eat
          */
-        static void lookAhead () {
+        static void lookAhead() {
             synchronized (syncLock) {
                 // Figure out the position ahead
                 final Coordinate nextHead = figureOutPositionAhead();
@@ -1031,24 +1033,24 @@ public final class Snake {
 
         }
 
-        private static void dealWithTheFood (final SweetType thisType) {
+        private static void dealWithTheFood(final SweetType thisType) {
             switch (thisType) {
-            case REGULAR:
-                growCount += 1;
-                break;
-            case XTRA_CALORIE:
-                growCount += fIELdSIZE / 2;
-                break;
-            case SUPER:
-                if (superMode) {
-                    superMode = false;
-                } else {
-                    superMode = true;
-                }
-                break;
-            default:
-                // unreachable
-                break;
+                case REGULAR:
+                    growCount += 1;
+                    break;
+                case XTRA_CALORIE:
+                    growCount += fIELdSIZE / 2;
+                    break;
+                case SUPER:
+                    if (superMode) {
+                        superMode = false;
+                    } else {
+                        superMode = true;
+                    }
+                    break;
+                default:
+                    // unreachable
+                    break;
             }
         }
 
@@ -1057,25 +1059,25 @@ public final class Snake {
          *
          * @return
          */
-        private static Coordinate figureOutPositionAhead () {
+        private static Coordinate figureOutPositionAhead() {
             Coordinate nextHead;
             switch (head.heading) {
-            case U:
-                nextHead = new Coordinate(head.x(), head.y() + 1);
-                break;
-            case D:
-                nextHead = new Coordinate(head.x(), head.y() - 1);
-                break;
-            case L:
-                nextHead = new Coordinate(head.x() - 1, head.y());
-                break;
-            case R:
-                nextHead = new Coordinate(head.x() + 1, head.y());
-                break;
-            default:
-                // Will get here only if heading is null
-                nextHead = new Coordinate(Integer.MAX_VALUE, Integer.MAX_VALUE);
-                break;
+                case U:
+                    nextHead = new Coordinate(head.x(), head.y() + 1);
+                    break;
+                case D:
+                    nextHead = new Coordinate(head.x(), head.y() - 1);
+                    break;
+                case L:
+                    nextHead = new Coordinate(head.x() - 1, head.y());
+                    break;
+                case R:
+                    nextHead = new Coordinate(head.x() + 1, head.y());
+                    break;
+                default:
+                    // Will get here only if heading is null
+                    nextHead = new Coordinate(Integer.MAX_VALUE, Integer.MAX_VALUE);
+                    break;
             }
             return nextHead;
         }
@@ -1083,7 +1085,7 @@ public final class Snake {
         /**
          * Grow in length by one by adding a node to the tail
          */
-        static void grow () {
+        static void grow() {
             linkLast(tail.heading.opposite());
             snakeLen++;
             growCount--;
@@ -1096,6 +1098,7 @@ public final class Snake {
 /*
  * DATA STRUCTURES ============================================================
  */
+
 /**
  * For representing four directions.
  */
@@ -1109,19 +1112,19 @@ enum Direction {
         this.keyVal = keyValue;
     }
 
-    public Direction opposite () {
+    public Direction opposite() {
         switch (this) {
-        case U:
-            return D;
-        case D:
-            return U;
-        case L:
-            return R;
-        case R:
-            return L;
-        default:
-            // Unreachable
-            return U;
+            case U:
+                return D;
+            case D:
+                return U;
+            case L:
+                return R;
+            case R:
+                return L;
+            default:
+                // Unreachable
+                return U;
         }
     }
 
@@ -1146,7 +1149,7 @@ enum DifficultyLevels {
         this.multiplierVal = val;
     }
 
-    public int val () {
+    public int val() {
         return this.multiplierVal;
     }
 }
@@ -1161,7 +1164,7 @@ enum FoodScarcityLevels {
         this.quantity = quant;
     }
 
-    public double val () {
+    public double val() {
         return Math.ceil(
                 this.quantity * (((Snake.fIELdSIZE + 1) * (Snake.fIELdSIZE + 1))
                         - Snake.snakeLen / ONE_POINT_FIVE));
@@ -1202,67 +1205,67 @@ final class Sweet {
         type = theType;
 
         switch (theType) {
-        case REGULAR:
-            loopsToLive = ((Snake.MILLIS_IN_A_SECOND
-                    * (Snake.rGen.nextInt(TEN) + TEN))
-                    / (Snake.FOOD_DISPENSE_CHECK_RESOLUTION + TWO_HUNDRED)) * 2;
-            break;
-        case SUPER:
-            loopsToLive = ((Snake.MILLIS_IN_A_SECOND * SEVEN)
-                    / (Snake.FOOD_DISPENSE_CHECK_RESOLUTION + TWO_HUNDRED)) * 2;
-            break;
-        case XTRA_CALORIE:
-            loopsToLive = ((Snake.MILLIS_IN_A_SECOND
-                    * (Snake.rGen.nextInt(TEN) + SEVEN))
-                    / (Snake.FOOD_DISPENSE_CHECK_RESOLUTION + TWO_HUNDRED)) * 2;
-            break;
-        default:
-            // Unreachable
-            loopsToLive = 0;
-            break;
+            case REGULAR:
+                loopsToLive = ((Snake.MILLIS_IN_A_SECOND
+                        * (Snake.rGen.nextInt(TEN) + TEN))
+                        / (Snake.FOOD_DISPENSE_CHECK_RESOLUTION + TWO_HUNDRED)) * 2;
+                break;
+            case SUPER:
+                loopsToLive = ((Snake.MILLIS_IN_A_SECOND * SEVEN)
+                        / (Snake.FOOD_DISPENSE_CHECK_RESOLUTION + TWO_HUNDRED)) * 2;
+                break;
+            case XTRA_CALORIE:
+                loopsToLive = ((Snake.MILLIS_IN_A_SECOND
+                        * (Snake.rGen.nextInt(TEN) + SEVEN))
+                        / (Snake.FOOD_DISPENSE_CHECK_RESOLUTION + TWO_HUNDRED)) * 2;
+                break;
+            default:
+                // Unreachable
+                loopsToLive = 0;
+                break;
         }
     }
 
-    public int x () {
+    public int x() {
         return position.x;
     }
 
-    public int y () {
+    public int y() {
         return position.y;
     }
 
-    public void drawSelf () {
+    public void drawSelf() {
         switch (this.type) {
-        case REGULAR:
-            StdDraw.filledCircle(this.x(), this.y(),
-                    Snake.HALF_CELL_WIDTH * ZERO_POINT_SIX);
-            break;
-        case XTRA_CALORIE:
-            StdDraw.circle(this.x(), this.y(), Snake.HALF_CELL_WIDTH);
-            break;
-        case SUPER:
-            StdDraw.setPenColor(StdDraw.BOOK_BLUE);
+            case REGULAR:
+                StdDraw.filledCircle(this.x(), this.y(),
+                        Snake.HALF_CELL_WIDTH * ZERO_POINT_SIX);
+                break;
+            case XTRA_CALORIE:
+                StdDraw.circle(this.x(), this.y(), Snake.HALF_CELL_WIDTH);
+                break;
+            case SUPER:
+                StdDraw.setPenColor(StdDraw.BOOK_BLUE);
 
-            final double[] xVals = {
-                    this.x(),
-                    this.x() - (POINT_NINE_ONE_FIVE * Snake.HALF_CELL_WIDTH),
-                    this.x() - (POINT_FIVE_EIGHT_EIGHT * Snake.HALF_CELL_WIDTH),
-                    this.x() + (POINT_FIVE_EIGHT_EIGHT * Snake.HALF_CELL_WIDTH),
-                    this.x() + (POINT_NINE_ONE_FIVE * Snake.HALF_CELL_WIDTH) };
-            final double[] yVals = {
-                    this.y() - Snake.HALF_CELL_WIDTH,
-                    this.y() - (POINT_THREE_O_NINE * Snake.HALF_CELL_WIDTH),
-                    this.y() + (POINT_EIGHT_O_NINE * Snake.HALF_CELL_WIDTH),
-                    this.y() + (POINT_EIGHT_O_NINE * Snake.HALF_CELL_WIDTH),
-                    this.y() - (POINT_THREE_O_NINE * Snake.HALF_CELL_WIDTH) };
-            StdDraw.filledPolygon(xVals, yVals);
-            // StdDraw.filledCircle(this.x(), this.y(), Snake.HALF_CELL_WIDTH);
+                final double[] xVals = {
+                        this.x(),
+                        this.x() - (POINT_NINE_ONE_FIVE * Snake.HALF_CELL_WIDTH),
+                        this.x() - (POINT_FIVE_EIGHT_EIGHT * Snake.HALF_CELL_WIDTH),
+                        this.x() + (POINT_FIVE_EIGHT_EIGHT * Snake.HALF_CELL_WIDTH),
+                        this.x() + (POINT_NINE_ONE_FIVE * Snake.HALF_CELL_WIDTH)};
+                final double[] yVals = {
+                        this.y() - Snake.HALF_CELL_WIDTH,
+                        this.y() - (POINT_THREE_O_NINE * Snake.HALF_CELL_WIDTH),
+                        this.y() + (POINT_EIGHT_O_NINE * Snake.HALF_CELL_WIDTH),
+                        this.y() + (POINT_EIGHT_O_NINE * Snake.HALF_CELL_WIDTH),
+                        this.y() - (POINT_THREE_O_NINE * Snake.HALF_CELL_WIDTH)};
+                StdDraw.filledPolygon(xVals, yVals);
+                // StdDraw.filledCircle(this.x(), this.y(), Snake.HALF_CELL_WIDTH);
 
-            StdDraw.setPenColor(StdDraw.WHITE);
-            break;
-        default:
-            // unreachable
-            break;
+                StdDraw.setPenColor(StdDraw.WHITE);
+                break;
+            default:
+                // unreachable
+                break;
         }
     }
 }
@@ -1281,11 +1284,11 @@ final class Node {
         heading = headTo;
     }
 
-    public int x () {
+    public int x() {
         return position.x;
     }
 
-    public int y () {
+    public int y() {
         return position.y;
     }
 }
