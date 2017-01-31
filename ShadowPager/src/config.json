@@ -1,0 +1,23 @@
+{
+  "port_password": {
+    "2000": "foobar1"
+  },
+  "peers": [
+    {
+      "ip": "",
+      "port": 9001,
+      "secret": "foobar"
+    }
+  ],
+  "pager_port": 10010,
+  "pager_secret": "pagerfoobar",
+  "timeout": 300,
+  "method": "aes-256-cfb",
+  "server": "178.62.250.164",
+  "server_port": 2000,
+  "password": "foobar1",
+  "local_port": 1080,
+  "pid-file": "shadowsocks.pid",
+  "log-file": "slog.log",
+  "db-path": "pager.db"
+}

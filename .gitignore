@@ -8,3 +8,4 @@ bin/
 *.class
 *.png
 *.iml
+*.pyc

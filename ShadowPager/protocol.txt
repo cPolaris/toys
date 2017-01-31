@@ -1,0 +1,104 @@
+Protocol for pager communication:
+
+* Text-based (JSON), over UDP
+* Secured with block cipher using shared secret as key
+* Custom ACK response for confirming operation status
+* Use random padding of spaces and include obfuscate field (use "joke" as the key) to avoid consistent packet length (silly? neat? hilarious?)
+
+
+ACK: client <-> server, server <-> server
+Return the status (with "success" field) or requested resource (with "data " field) of last action.
+Keys: act, joke, success, data
+Example:
+{     "act":  "ack",  "success": False,             "joke": "Computer Science is no more about computers than astronomy is about telescopes. - EWD",
+  "data": "this varies depending on what was the action performed"}
+
+
+POKE: client <-> server, server <-> server
+To see if the receiver is still up. When a pager server comes online, it pokes at every peer it knew to update their status.
+Keys: act, joke
+Example:
+{ "joke": "I don't feel like telling a joke right now", "act": "poke" }
+
+
+MENU: client -> server
+---------------------------------------
+LS_SERVICE: (client)
+{
+	"act": "LS_SERVICE"
+}
+---------------------------------------
+ADD_SERVICE: (client)
+{
+	"act": "ADD_SERVICE",
+	"port": 1234,
+	"secret": "foobar"
+}
+
+reply:
+{
+	"act": "ACK",
+	"status": true
+}
+---------------------------------------
+RM_SERVICE: (client)
+{
+	"act": "RM_SERVICE",
+	"port": 1234
+}
+---------------------------------------
+JOIN: (client)
+{
+	"act": "JOIN",
+	"IP": "1.2.3.4",
+	"port": 1234,
+	"secret": "foobar"
+}
+
+{
+	"act": "ACK",
+	"status": true
+}
+---------------------------------------
+POKE: (peer)
+{
+	"act": "POKE",
+	"quote": "..."
+}
+
+---------------------------------------
+GREET:
+{
+	"act": "GREET",
+	"secret": "foobar",
+	"reply": True
+	"peers": [
+		{
+			"ip": "8.8.8.8",
+			"port": 1234,
+			"secret": "foobar"
+		},
+		{
+			"ip": "2.2.2.2",
+			"port": 4567,
+			"secret": "raboof"
+		}
+	]
+}
+reply:
+{
+	"status": true,
+	"act": "ACK",
+	"peers": [
+		{
+			"ip": "8.8.8.8",
+			"port": 1234,
+			"secret": "foobar"
+		},
+		{
+			"ip": "2.2.2.2",
+			"port": 4567,
+			"secret": "raboof"
+		}
+	]
+}
