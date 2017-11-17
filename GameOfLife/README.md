@@ -1,5 +1,6 @@
-![code: shitty](https://img.shields.io/badge/code-shitty-red.svg)
-
 # MyGameOfLife
+
+![screenshot](scrsht.jpg)
+
 A **very** simple game of life implementation.
-Visulization achieved with Sedgewick's Java Standard library for his textbooks.
+Visulization achieved with Princton Java Standard library. (Yes, I had a lot of fun with this drawing tool)

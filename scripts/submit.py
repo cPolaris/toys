@@ -25,7 +25,7 @@ def send_submission(ass_name, file_names, class_name='cse2010'):
         sys.exit(0)
 
     form = {
-        'controlCode': os.environ['FIT_SUB_CODE'],
+        'controlCode': os.environ['...'],
         'class': class_name,
         'assignment': ass_name
     }
@@ -34,7 +34,7 @@ def send_submission(ass_name, file_names, class_name='cse2010'):
     for fn in file_names:
         files.append(('files[]', open(fn,'rb')))
 
-    response = requests.post('https://cs.fit.edu/Portal/modules/submitServer/?action=submit', data=form, files=files)
+    response = requests.post('...', data=form, files=files)
 
     # Print response
     toggle = False

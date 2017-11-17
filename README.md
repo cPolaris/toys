@@ -1,3 +1,5 @@
+Toy projects and scripts. I'm very humble so I don't create dedicated repos for each one of them.
+
 **Toy**<br>
 
 1. an object for a child to play with, typically a model or miniature replica of something: *[ as modifier ]* : a toy car.
