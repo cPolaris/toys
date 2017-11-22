@@ -1,0 +1,16 @@
+{
+  "name": "Atlov",
+  "version": "0.1.0",
+  "description": "Automates a particularly interesting daily task",
+  "repository": "https://github.com/cPolaris/Atlov",
+  "scripts": {},
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "progress": "^2.0.0",
+    "puppeteer": "^0.11.0",
+    "serve-static": "^1.13.0",
+    "sqlite": "^2.8.0",
+    "winston": "^2.4.0"
+  }
+}
