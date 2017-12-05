@@ -1,4 +1,4 @@
-Toy projects and scripts. I'm very humble so I don't create dedicated repos for each one of them.
+Archive for toy projects and scripts.
 
 **Toy**<br>
 
