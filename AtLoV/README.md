@@ -1,3 +1,5 @@
+This project automates an interesting frequent task...
+
 ### TODO
 
 - Retry failed picture download via alternative mirror host
